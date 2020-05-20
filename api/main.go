@@ -1,12 +1,13 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
+	// "encoding/json"
+	// "io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"time"
+
+	//	"time"
 
 	"github.com/rs/cors"
 
@@ -25,14 +26,9 @@ func main() {
 	defer session.Close()
 	session.SetMode(mgo.Monotonic, true)
 
-	// Get posts collection
-	posts = session.DB("app").C("posts")
-
 	// Set up routes
-
+	r := mux.NewRouter()
 
 	http.ListenAndServe(":8080", cors.AllowAll().Handler(r))
 	log.Println("Listening on port 8080...")
 }
-
-
